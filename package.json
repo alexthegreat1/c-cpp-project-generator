@@ -4,7 +4,7 @@
     "description": "Generate C/C++ Projects",
     "version": "1.1.1",
     "icon": "resources/logo.png",
-    "publisher": "danielpinto8zz6",
+    "publisher": "alexthegreat1",
     "engines": {
         "vscode": "^1.21.0"
     },
@@ -48,12 +48,12 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/danielpinto8zz6/c-cpp-project-generator.git"
+        "url": "git+https://github.com/alexthegreat1/c-cpp-project-generator"
     },
-    "author": "danielpinto8zz6",
+    "author": "alexthegreat1",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/danielpinto8zz6/c-cpp-project-generator/issues"
+        "url": "https://github.com/alexthegreat1/c-cpp-project-generator/issues"
     },
-    "homepage": "https://github.com/danielpinto8zz6/c-cpp-project-generator#readme"
+    "homepage": "https://github.com/alexthegreat1/c-cpp-project-generator#readme"
 }

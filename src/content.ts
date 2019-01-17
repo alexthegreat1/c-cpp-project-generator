@@ -1,4 +1,4 @@
 export const launch_json: any = { "version": "0.2.0", "configurations": [{ "name": "Debug", "type": "cppdbg", "request": "launch", "program": "${workspaceFolder}/bin/${fileBasenameNoExtension}", "args": [], "stopAtEntry": false, "cwd": "${workspaceFolder}", "environment": [], "externalConsole": false, "MIMode": "lldb" }] };
-export const main_cpp: string = '#include <iostream>\nusing namespace std;\n\nint main() {\n\t\nreturn 0;\n}\n';
+export const main_cpp: string = '#include <iostream>\nusing namespace std;\n\nint main() {\n\t\n\treturn 0;\n}\n';
 export const main_c: string = '#include <stdio.h>\nint main() {\n\tprintf("Hello World");\n}';
 export const directories: string[] = new Array(".vscode", "bin", "src");

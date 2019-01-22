@@ -12,7 +12,15 @@ export async function activate(context: vscode.ExtensionContext) {
         project.createProject("cpp");
     });
 
-    context.subscriptions.push(createCProjectCommand, createCppProjectCommand);
+    let createCFileCommand = vscode.commands.registerCommand('extension.createCFile', () => {
+        project.createFile("c");
+    });
+
+    let createCppFileCommand = vscode.commands.registerCommand('extension.createCppFile', () => {
+        project.createFile("cpp");
+    });
+
+    context.subscriptions.push(createCProjectCommand, createCppProjectCommand, createCFileCommand, createCppFileCommand);
 }
 
 export function deactivate() {

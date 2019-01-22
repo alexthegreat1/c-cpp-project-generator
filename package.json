@@ -25,6 +25,14 @@
             {
                 "command": "extension.createCppProject",
                 "title": "Create C++ project"
+            },
+            {
+                "command": "extension.createCFile",
+                "title": "Create C file"
+            },
+            {
+                "command": "extension.createCppFile",
+                "title": "Create C++ file"
             }
         ]
     },

@@ -26,6 +26,41 @@ export namespace project {
         }
     }
 
+    export async function createFile(type: string) {
+        let name;
+        const currentFolderWorkspace = vscode.workspace.workspaceFolders[0].uri;
+        const location = currentFolderWorkspace.fsPath;
+
+        // TODO: Make this a separate function so createFile and createProject can both call it, no duplicate code
+        await vscode.window.showInputBox({
+            placeHolder: "Enter name for file",
+            value: "main"
+        }).then(input => {
+            name = input;
+        })
+        if (name != undefined) {
+            if (currentFolderWorkspace.fsPath) {
+                try {
+                    switch (type) {
+                        case 'c':
+                            fs.writeFileSync(path.join(location, 'src', name + '.c'), content.main_c);
+                            vscode.workspace.openTextDocument(path.join(location, 'src', name + '.c'))
+                                .then(doc => vscode.window.showTextDocument(doc, { preview: false }));
+                            break;
+                        case 'cpp':
+                            fs.writeFileSync(path.join(location, 'src', name + '.cpp'), content.main_cpp);
+                            vscode.workspace.openTextDocument(path.join(location, 'src', name + '.cpp'))
+                                .then(doc => vscode.window.showTextDocument(doc, { preview: false }));
+                            break;
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+            else vscode.window.setStatusBarMessage("Error: Incorrect path");
+        }
+        else vscode.window.setStatusBarMessage("Error: No name provided");
+    }
 
     export function createFolders(location: string): void {
         content.directories.forEach(function (dir: string) {
@@ -52,8 +87,8 @@ export namespace project {
             name = input;
         })
         if (name != undefined) {
-        if (currentFolderWorkspace.fsPath) {
-            createFolders(currentFolderWorkspace.fsPath);
+            if (currentFolderWorkspace.fsPath) {
+                createFolders(currentFolderWorkspace.fsPath);
                 createFiles(name, type, currentFolderWorkspace.fsPath);
             }
             else vscode.window.setStatusBarMessage("Error: Incorrect path");

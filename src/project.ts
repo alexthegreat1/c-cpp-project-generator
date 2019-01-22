@@ -4,18 +4,18 @@ import * as path from 'path';
 import * as content from './content';
 
 export namespace project {
-    export function createFiles(type: string, location: string) {
+    export function createFiles(name: string, type: string, location: string) {
         try {
             fs.writeFileSync(path.join(location, '.vscode', 'launch.json'), JSON.stringify(content.launch_json, null, 4));
             switch (type) {
                 case 'c':
-                    fs.writeFileSync(path.join(location, 'src', 'main.c'), content.main_c);
-                    vscode.workspace.openTextDocument(path.join(location, 'src', 'main.c'))
+                    fs.writeFileSync(path.join(location, 'src', name + '.c'), content.main_c);
+                    vscode.workspace.openTextDocument(path.join(location, 'src', name + '.c'))
                         .then(doc => vscode.window.showTextDocument(doc, { preview: false }));
                     break;
                 case 'cpp':
-                    fs.writeFileSync(path.join(location, 'src', 'main.cpp'), content.main_cpp);
-                    vscode.workspace.openTextDocument(path.join(location, 'src', 'main.cpp'))
+                    fs.writeFileSync(path.join(location, 'src', name + '.cpp'), content.main_cpp);
+                    vscode.workspace.openTextDocument(path.join(location, 'src', name + '.cpp'))
                         .then(doc => vscode.window.showTextDocument(doc, { preview: false }));
                     break;
                 default:
@@ -38,14 +38,26 @@ export namespace project {
     }
 
     export async function createProject(type: string) {
+        let name;
+
         if (!vscode.workspace.workspaceFolders) {
             vscode.window.showErrorMessage("Open a folder or workspace before creating a project!");
             return;
         }
         const currentFolderWorkspace = vscode.workspace.workspaceFolders[0].uri;
+        await vscode.window.showInputBox({
+            placeHolder: "Enter name for file",
+            value: "main"
+        }).then(input => {
+            name = input;
+        })
+        if (name != undefined) {
         if (currentFolderWorkspace.fsPath) {
             createFolders(currentFolderWorkspace.fsPath);
-            createFiles(type, currentFolderWorkspace.fsPath);
+                createFiles(name, type, currentFolderWorkspace.fsPath);
+            }
+            else vscode.window.setStatusBarMessage("Error: Incorrect path");
         }
+        else vscode.window.setStatusBarMessage("Error: No name provided");
     }
 }

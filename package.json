@@ -13,7 +13,9 @@
     ],
     "activationEvents": [
         "onCommand:extension.createCProject",
-        "onCommand:extension.createCppProject"
+        "onCommand:extension.createCppProject",
+        "onCommand:extension.createCFile",
+        "onCommand:extension.createCppFile"
     ],
     "main": "./out/extension",
     "contributes": {

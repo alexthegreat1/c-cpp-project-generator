@@ -29,8 +29,6 @@ VSCode task: Configurations for building and running your project
 
 - `launch.json` doesn't work with workspace or file names that have spaces
 - If you create a file with the same name as an existing file, the existing one will be overwritten
-- If you try to create a C/C++ file in an existing project, it sometimes doesn't work and gives the error that the command isn't found.
-  - Workaround: Choose to create a C/C++ project instead and it will create the file. Then, you can choose the "Create file" option and it will work. Unknown if recreating the project erases your files in `.vscode`.
 
 ## Release Notes
 
